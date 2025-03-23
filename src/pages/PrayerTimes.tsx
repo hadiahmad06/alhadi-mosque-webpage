@@ -7,6 +7,15 @@ import PrayerCard from "@/components/PrayerCard";
 import JumuahTimes from "@/components/JumuahTimes";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+// Fixed iqama times for Al Hadi Association
+const iqamaTimes = {
+  Fajr: "6:10 AM",
+  Dhuhr: "1:30 PM",
+  Asr: "5:30 PM",
+  Maghrib: "10 min after sunset",
+  Isha: "9:10 PM",
+};
+
 const PrayerTimes = () => {
   const { prayerTimes, loading, error, nextPrayer, calculationMethod, setCalculationMethod } = usePrayerTimes();
   
@@ -88,7 +97,18 @@ const PrayerTimes = () => {
                     <div>
                       <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">Next Prayer</h3>
                       <h2 className="text-3xl font-bold mt-1">{nextPrayer?.name}</h2>
-                      <p className="text-2xl mt-1">{nextPrayer?.time}</p>
+                      <div className="mt-2">
+                        <div>
+                          <p className="text-xs text-muted-foreground">Adhan</p>
+                          <p className="text-2xl">{nextPrayer?.time}</p>
+                        </div>
+                        {nextPrayer?.name && iqamaTimes[nextPrayer.name as keyof typeof iqamaTimes] && (
+                          <div className="mt-1">
+                            <p className="text-xs text-muted-foreground">Iqama</p>
+                            <p className="text-2xl text-secondary">{iqamaTimes[nextPrayer.name as keyof typeof iqamaTimes]}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                     <div className="bg-primary/10 px-6 py-4 rounded-lg">
                       <p className="text-sm text-muted-foreground">Time Remaining</p>
@@ -119,12 +139,47 @@ const PrayerTimes = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {prayerTimes && (
                     <>
-                      <PrayerCard name="Fajr" time={prayerTimes.Fajr} isNext={nextPrayer?.name === 'Fajr'} timeRemaining={nextPrayer?.name === 'Fajr' ? nextPrayer.timeRemaining : undefined} />
-                      <PrayerCard name="Sunrise" time={prayerTimes.Sunrise} isNext={nextPrayer?.name === 'Sunrise'} timeRemaining={nextPrayer?.name === 'Sunrise' ? nextPrayer.timeRemaining : undefined} />
-                      <PrayerCard name="Dhuhr" time={prayerTimes.Dhuhr} isNext={nextPrayer?.name === 'Dhuhr'} timeRemaining={nextPrayer?.name === 'Dhuhr' ? nextPrayer.timeRemaining : undefined} />
-                      <PrayerCard name="Asr" time={prayerTimes.Asr} isNext={nextPrayer?.name === 'Asr'} timeRemaining={nextPrayer?.name === 'Asr' ? nextPrayer.timeRemaining : undefined} />
-                      <PrayerCard name="Maghrib" time={prayerTimes.Maghrib} isNext={nextPrayer?.name === 'Maghrib'} timeRemaining={nextPrayer?.name === 'Maghrib' ? nextPrayer.timeRemaining : undefined} />
-                      <PrayerCard name="Isha" time={prayerTimes.Isha} isNext={nextPrayer?.name === 'Isha'} timeRemaining={nextPrayer?.name === 'Isha' ? nextPrayer.timeRemaining : undefined} />
+                      <PrayerCard 
+                        name="Fajr" 
+                        time={prayerTimes.Fajr} 
+                        isNext={nextPrayer?.name === 'Fajr'} 
+                        timeRemaining={nextPrayer?.name === 'Fajr' ? nextPrayer.timeRemaining : undefined} 
+                        iqamaTime={iqamaTimes.Fajr}
+                      />
+                      <PrayerCard 
+                        name="Sunrise" 
+                        time={prayerTimes.Sunrise} 
+                        isNext={nextPrayer?.name === 'Sunrise'} 
+                        timeRemaining={nextPrayer?.name === 'Sunrise' ? nextPrayer.timeRemaining : undefined} 
+                      />
+                      <PrayerCard 
+                        name="Dhuhr" 
+                        time={prayerTimes.Dhuhr} 
+                        isNext={nextPrayer?.name === 'Dhuhr'} 
+                        timeRemaining={nextPrayer?.name === 'Dhuhr' ? nextPrayer.timeRemaining : undefined} 
+                        iqamaTime={iqamaTimes.Dhuhr}
+                      />
+                      <PrayerCard 
+                        name="Asr" 
+                        time={prayerTimes.Asr} 
+                        isNext={nextPrayer?.name === 'Asr'} 
+                        timeRemaining={nextPrayer?.name === 'Asr' ? nextPrayer.timeRemaining : undefined} 
+                        iqamaTime={iqamaTimes.Asr}
+                      />
+                      <PrayerCard 
+                        name="Maghrib" 
+                        time={prayerTimes.Maghrib} 
+                        isNext={nextPrayer?.name === 'Maghrib'} 
+                        timeRemaining={nextPrayer?.name === 'Maghrib' ? nextPrayer.timeRemaining : undefined} 
+                        iqamaTime={iqamaTimes.Maghrib}
+                      />
+                      <PrayerCard 
+                        name="Isha" 
+                        time={prayerTimes.Isha} 
+                        isNext={nextPrayer?.name === 'Isha'} 
+                        timeRemaining={nextPrayer?.name === 'Isha' ? nextPrayer.timeRemaining : undefined} 
+                        iqamaTime={iqamaTimes.Isha}
+                      />
                     </>
                   )}
                 </div>
@@ -137,6 +192,8 @@ const PrayerTimes = () => {
                 >
                   <p>* Prayer times are calculated using the {calculationMethods.find(method => method.id === calculationMethod)?.name} method.</p>
                   <p>* Times are adjusted for Lakeville, MN and may vary slightly based on calculation method.</p>
+                  <p className="mt-2">* Iqama times are fixed for Al Hadi Association at {iqamaTimes.Fajr} (Fajr), {iqamaTimes.Dhuhr} (Dhuhr), {iqamaTimes.Asr} (Asr), {iqamaTimes.Maghrib} (Maghrib), and {iqamaTimes.Isha} (Isha).</p>
+                  <p>* Address: 17685 Juniper Path Suite #313, Lakeville, MN 55044</p>
                 </motion.div>
               </div>
               

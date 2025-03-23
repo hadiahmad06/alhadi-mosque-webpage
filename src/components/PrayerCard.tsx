@@ -7,9 +7,10 @@ interface PrayerCardProps {
   time: string;
   isNext?: boolean;
   timeRemaining?: string;
+  iqamaTime?: string;
 }
 
-const PrayerCard = ({ name, time, isNext, timeRemaining }: PrayerCardProps) => {
+const PrayerCard = ({ name, time, isNext, timeRemaining, iqamaTime }: PrayerCardProps) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -22,7 +23,18 @@ const PrayerCard = ({ name, time, isNext, timeRemaining }: PrayerCardProps) => {
       )}
     >
       <h3 className="text-lg font-playfair font-semibold mb-1">{name}</h3>
-      <p className="text-2xl font-bold font-amiri">{time}</p>
+      <div className="space-y-2">
+        <div>
+          <p className="text-xs text-muted-foreground">Adhan</p>
+          <p className="text-xl font-bold font-amiri">{time}</p>
+        </div>
+        {iqamaTime && (
+          <div>
+            <p className="text-xs text-muted-foreground">Iqama</p>
+            <p className="text-xl font-bold font-amiri text-secondary">{iqamaTime}</p>
+          </div>
+        )}
+      </div>
       {isNext && timeRemaining && (
         <div className="mt-3 pt-3 border-t border-primary/20">
           <p className="text-sm text-muted-foreground">Coming up in:</p>
