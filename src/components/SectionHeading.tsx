@@ -27,11 +27,12 @@ const SectionHeading = ({
         className
       )}
     >
-      <h2 className="text-3xl sm:text-4xl font-display font-semibold tracking-tight">
+      <h2 className="text-3xl sm:text-4xl font-playfair font-semibold tracking-tight relative inline-block">
         {title}
+        <span className="absolute -bottom-3 left-0 right-0 h-0.5 bg-secondary"></span>
       </h2>
       {subtitle && (
-        <p className="mt-4 text-xl text-muted-foreground max-w-3xl mx-auto">
+        <p className="mt-6 text-xl font-amiri text-muted-foreground max-w-3xl mx-auto">
           {subtitle}
         </p>
       )}

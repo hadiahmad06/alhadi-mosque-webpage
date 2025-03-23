@@ -2,69 +2,36 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
+// Define the Google Maps types
+declare global {
+  interface Window {
+    google: any;
+    initMap: () => void;
+  }
+}
+
 const GoogleMap = () => {
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Create a script element
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=`;
-    script.async = true;
-    script.defer = true;
-    script.onload = initMap;
+    // Disable actual API call as requested, show static map instead
+    const initMap = () => {
+      if (mapRef.current) {
+        // Simple static display of map container
+        const mapContainer = mapRef.current;
+        mapContainer.style.backgroundImage = "url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80')";
+        mapContainer.style.backgroundSize = "cover";
+        mapContainer.style.backgroundPosition = "center";
+      }
+    };
     
-    // Append the script to the document
-    document.head.appendChild(script);
-
-    // Cleanup function
+    // Initialize map immediately instead of loading the script
+    initMap();
+    
     return () => {
-      // Remove the script when component unmounts
-      document.head.removeChild(script);
+      // No cleanup needed for static map
     };
   }, []);
-
-  const initMap = () => {
-    if (mapRef.current && window.google) {
-      // Mosque location coordinates
-      const mosqueLocation = { lat: 44.7010, lng: -93.2194 }; // Approximate coordinates for Lakeville, MN
-      
-      // Create the map
-      const map = new window.google.maps.Map(mapRef.current, {
-        center: mosqueLocation,
-        zoom: 15,
-        mapId: 'b30af38622f87f82',
-        disableDefaultUI: true,
-        zoomControl: true,
-        fullscreenControl: true,
-      });
-      
-      // Add marker for the mosque
-      const marker = new window.google.maps.Marker({
-        position: mosqueLocation,
-        map: map,
-        title: 'Al Hadi Association',
-        animation: window.google.maps.Animation.DROP,
-      });
-      
-      // Add info window
-      const infoWindow = new window.google.maps.InfoWindow({
-        content: `
-          <div style="padding: 8px; max-width: 200px;">
-            <h3 style="margin: 0 0 8px; font-size: 16px; font-weight: 600;">Al Hadi Association</h3>
-            <p style="margin: 0; font-size: 14px;">17685 Juniper Path, Suite 313<br>Lakeville, MN 55044</p>
-          </div>
-        `,
-      });
-      
-      // Open info window when marker is clicked
-      marker.addListener('click', () => {
-        infoWindow.open(map, marker);
-      });
-      
-      // Initially open the info window
-      infoWindow.open(map, marker);
-    }
-  };
 
   const handleGetDirections = () => {
     const destination = "17685+Juniper+Path+Suite+313+Lakeville+MN";
@@ -72,8 +39,13 @@ const GoogleMap = () => {
   };
 
   return (
-    <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-lg">
-      <div ref={mapRef} className="h-full w-full" />
+    <div className="relative h-[400px] w-full rounded-xl overflow-hidden shadow-lg border-4 border-secondary/30">
+      <div ref={mapRef} className="h-full w-full flex items-center justify-center">
+        <div className="glass-card p-6 text-center">
+          <h3 className="text-xl font-semibold mb-2">Al Hadi Association</h3>
+          <p className="mb-4">17685 Juniper Path, Suite 313, Lakeville, MN 55044</p>
+        </div>
+      </div>
       <motion.div 
         className="absolute bottom-4 right-4 z-10"
         initial={{ opacity: 0, y: 20 }}

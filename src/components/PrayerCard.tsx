@@ -17,12 +17,12 @@ const PrayerCard = ({ name, time, isNext, timeRemaining }: PrayerCardProps) => {
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
       className={cn(
-        "glass-card rounded-xl p-6 flex flex-col",
-        isNext ? "bg-primary/10 border-primary/30" : ""
+        "glass-card rounded-xl p-6 flex flex-col border-t-4",
+        isNext ? "border-t-primary bg-primary/5" : "border-t-secondary"
       )}
     >
-      <h3 className="text-lg font-semibold mb-1">{name}</h3>
-      <p className="text-2xl font-bold">{time}</p>
+      <h3 className="text-lg font-playfair font-semibold mb-1">{name}</h3>
+      <p className="text-2xl font-bold font-amiri">{time}</p>
       {isNext && timeRemaining && (
         <div className="mt-3 pt-3 border-t border-primary/20">
           <p className="text-sm text-muted-foreground">Coming up in:</p>
