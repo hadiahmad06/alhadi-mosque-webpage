@@ -23,7 +23,7 @@ const App = () => (
       <BrowserRouter>
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route path="/alhadi-mosque-webpage/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="prayer-times" element={<PrayerTimes />} />
               <Route path="about" element={<About />} />
