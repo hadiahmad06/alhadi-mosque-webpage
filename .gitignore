@@ -25,4 +25,5 @@ dist-ssr
 
 # secrets
 
+.env
 config/secrets.json

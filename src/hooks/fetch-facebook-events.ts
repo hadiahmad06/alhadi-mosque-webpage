@@ -1,8 +1,6 @@
-import secrets from '../../config/secrets.json'; // might break later
-
 const fetchFacebookEvents = async () => {
-  const pageId = secrets.pageId;
-  const accessToken = secrets.accessToken;
+  const pageId = process.env.FACEBOOK_PAGE_ID;
+  const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
   const url = `https://graph.facebook.com/${pageId}/events?access_token=${accessToken}`;
 
   try {
@@ -11,12 +9,15 @@ const fetchFacebookEvents = async () => {
     
     // Process and return the events data
     return data.data.map((event) => ({
-      title: event.name,
-      date: new Date(event.start_time).toLocaleDateString(),
-      time: new Date(event.start_time).toLocaleTimeString(),
-      description: event.description || "No description available",
-      imageUrl: event.cover?.source || "",
-    }));
+        id: event.id, // Event ID
+        title: event.name, // Event title
+        date: new Date(event.start_time).toLocaleDateString(), // Event start date
+        time: new Date(event.start_time).toLocaleTimeString(), // Event start time
+        description: event.description || "No description available", // Event description
+        imageUrl: event.cover?.source || "", // Event cover image
+        attendingCount: event.attending_count || 0, // Number of people attending
+        interestedCount: event.interested_count || 0, // Number of people interested
+      }));
   } catch (error) {
     console.error("Error fetching Facebook events:", error);
     return [];
