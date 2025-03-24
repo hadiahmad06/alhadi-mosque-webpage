@@ -34,7 +34,7 @@ const GoogleMap = () => {
   }, []);
 
   const handleGetDirections = () => {
-    const destination = "17685+Juniper+Path+Suite+313+Lakeville+MN";
+    const destination = "17685+Juniper+Path+Lakeville+MN+55044";
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${destination}`, '_blank');
   };
 

@@ -10,7 +10,7 @@ const Location = () => {
             <section id="location" className="section-container">
             <SectionHeading 
             title="Find Us"
-            subtitle="We are located in Lakeville, MN"
+            subtitle="We are located just off Exit 85 on I-35 in Lakeville, MN."
             />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
