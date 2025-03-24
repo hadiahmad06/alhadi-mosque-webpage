@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import SectionNav from "@/components/NavButtons";
 
 interface NavbarProps {
   isScrolled: boolean;
@@ -63,6 +64,9 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
               <NavLink to="/" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
                 Home
               </NavLink>
+              <NavLink to="/special" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
+                Ramadan 2025
+              </NavLink>
               <NavLink to="/events" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
                 Events
               </NavLink>
@@ -72,18 +76,22 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
 
               {/* Home page sections */}
               {isHome ? (
-                <a href="#donate" className="nav-link">
-                  Donate
-                </a>
+                <SectionNav 
+                  className="nav-link"
+                  id="donate"
+                  text="Donate"
+                />
               ) : (
                 <NavLink to="/#donate" className="nav-link">
                   Donate
                 </NavLink>
               )}
               {isHome ? (
-                <a href="#contact" className="nav-link">
-                  Contact
-                </a>
+                <SectionNav 
+                  className="nav-link"
+                  id="contact"
+                  text="Contact"
+                />
               ) : (
                 <NavLink to="/#contact" className="nav-link">
                   Contact

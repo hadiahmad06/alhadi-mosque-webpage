@@ -6,7 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "./components/Layout";
+import ScrollToHash from "./components/ScrollToHash";
 import Index from "./pages/Index";
+import SpecialPage from "./pages/SpecialPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -17,10 +19,12 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToHash />
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
+              <Route path="/special/" element={<SpecialPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

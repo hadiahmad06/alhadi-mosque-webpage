@@ -7,6 +7,7 @@ import SectionHeading from "@/components/SectionHeading";
 import GoogleMap from "@/components/GoogleMap";
 import JumuahTimes from "@/components/JumuahTimes";
 import { Separator } from "@/components/ui/separator";
+import SectionNav from "@/components/NavButtons";
 
 const Hero = () => {
   const { prayerTimes, loading, nextPrayer } = usePrayerTimes();
@@ -51,12 +52,16 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <a href="#donate" className="btn-primary">
-                Donate Now
-              </a>
-              <a href="#prayer-times" className="btn-secondary">
-                Prayer Times
-              </a>
+              <SectionNav 
+                className="btn-primary"
+                id="donate"
+                text="Donate"
+              />
+              <SectionNav 
+                className="btn-secondary"
+                id="prayer-times"
+                text="Prayer Times"
+              />
             </motion.div>
           </motion.div>
         </div>
