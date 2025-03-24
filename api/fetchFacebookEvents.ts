@@ -3,8 +3,8 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';  // Type definitions for Vercel
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const pageId = process.env.FACEBOOK_PAGE_ID;
-  const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
+  const pageId = process.env.FB_PAGE_ID;
+  const accessToken = process.env.FB_PAGE_ACCESS_TOKEN;
 
   // Facebook Graph API endpoint
   const url = `https://graph.facebook.com/${pageId}/events?access_token=${accessToken}`;

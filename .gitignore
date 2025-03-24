@@ -27,3 +27,5 @@ dist-ssr
 
 .env
 config/secrets.json
+.vercel
+.env*.local
