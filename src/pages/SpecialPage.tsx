@@ -1,4 +1,5 @@
 import SectionHeading from "@/components/SectionHeading";
+
 const SpecialPage = () => {
   return (
     <div className="section-container">
