@@ -1,6 +1,6 @@
 const fetchFacebookEvents = async () => {
-  const pageId = process.env.FACEBOOK_PAGE_ID;
-  const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
+  const pageId = import.meta.env.VITE_FACEBOOK_PAGE_ID;
+  const accessToken = import.meta.env.VITE_FACEBOOK_ACCESS_TOKEN;
   const url = `https://graph.facebook.com/${pageId}/events?access_token=${accessToken}`;
 
   try {
