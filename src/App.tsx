@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Layout from "./components/Layout";
 import ScrollToHash from "./components/ScrollToHash";
 import Index from "./pages/Index";
+import Events from "./pages/Events";
 import SpecialPage from "./pages/SpecialPage";
 import NotFound from "./pages/NotFound";
 
@@ -24,6 +25,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
+              <Route path="/events/" element={<Events />}/>
               <Route path="/special/" element={<SpecialPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
