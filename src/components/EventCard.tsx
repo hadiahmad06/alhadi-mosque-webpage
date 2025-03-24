@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock, Users } from 'lucide-react';
 
 interface EventCardProps {
   title: string;
@@ -10,6 +9,9 @@ interface EventCardProps {
   time: string;
   description: string;
   imageUrl: string;
+  attendingCount: number;
+  interestedCount: number;
+  eventId: string;
 }
 
 // Function to make links in text clickable
@@ -53,6 +55,9 @@ const EventCard: React.FC<EventCardProps> = ({
   time,
   description,
   imageUrl,
+  attendingCount,
+  interestedCount,
+  eventId,
 }) => {
   return (
     <Card className="overflow-hidden h-full flex flex-col shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -88,6 +93,11 @@ const EventCard: React.FC<EventCardProps> = ({
         <CardDescription className="text-foreground pt-2 line-clamp-4">
           {formatDescription(description)}
         </CardDescription>
+        
+        <div className="flex items-center text-muted-foreground gap-2 mt-2">
+          <Users size={18} className="flex-shrink-0" />
+          <span className="text-sm">{attendingCount} attending | {interestedCount} interested</span>
+        </div>
       </CardContent>
       
       <CardFooter className="pt-0">

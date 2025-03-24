@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import EventCard from '@/components/EventCard';
 import fetchFacebookEvents from '@/hooks/fetch-facebook-events';
@@ -84,6 +83,9 @@ const Events: React.FC = () => {
                       time={event.time}
                       description={event.description}
                       imageUrl={event.imageUrl}
+                      attendingCount={event.attendingCount} // Pass attending count
+                      interestedCount={event.interestedCount} // Pass interested count
+                      eventId={event.id} // Pass event ID
                     />
                   </motion.div>
                 ))}
@@ -111,6 +113,9 @@ const Events: React.FC = () => {
                       time={event.time}
                       description={event.description}
                       imageUrl={event.imageUrl}
+                      attendingCount={event.attendingCount} // Pass attending count
+                      interestedCount={event.interestedCount} // Pass interested count
+                      eventId={event.id} // Pass event ID
                     />
                   </motion.div>
                 ))}
