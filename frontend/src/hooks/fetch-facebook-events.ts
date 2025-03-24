@@ -1,5 +1,5 @@
 const fetchFacebookEvents = async () => {
-  const url = `http://localhost:5001/api/fetchFacebookEvents`;  // Frontend hits backend endpoint
+  const url = `https://alhadi-mosque-webpage.vercel.app/api/fetchFacebookEvents`;  // Frontend hits backend endpoint
 
   try {
     const response = await fetch(url);  // Makes a request to the backend
