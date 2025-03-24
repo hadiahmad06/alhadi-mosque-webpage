@@ -1,8 +1,7 @@
-// /api/fetchFacebookEvents.ts
+const fetch = require('node-fetch');  // Import node-fetch to fetch data from Facebook API
+const { VercelRequest, VercelResponse } = require('@vercel/node');  // Import Vercel's request and response types
 
-import { VercelRequest, VercelResponse } from '@vercel/node';  // Type definitions for Vercel
-
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async function handler(req, res) {
   const pageId = process.env.FB_PAGE_ID;
   const accessToken = process.env.FB_PAGE_ACCESS_TOKEN;
 
@@ -15,7 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const data = await response.json();
 
     // Extract and format event data
-    const events = data.data.map((event: any) => ({
+    const events = data.data.map((event) => ({
       id: event.id,
       title: event.name,
       date: new Date(event.start_time).toLocaleDateString(),
@@ -32,4 +31,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("Error fetching Facebook events:", error);
     res.status(500).json({ error: "Failed to fetch Facebook events" });
   }
-}
+};
