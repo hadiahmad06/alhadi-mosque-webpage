@@ -1,6 +1,8 @@
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Facebook, Instagram, MessageCircle } from "lucide-react";
+import SectionNav from "@/components/NavButtons";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -36,18 +38,26 @@ const Footer = () => {
           >
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <div className="space-y-2">
-              <Link to="/prayer-times" className="block text-muted-foreground hover:text-primary transition-colors">
-                Prayer Times
-              </Link>
-              <Link to="/about" className="block text-muted-foreground hover:text-primary transition-colors">
-                About Us
-              </Link>
-              <Link to="/donate" className="block text-muted-foreground hover:text-primary transition-colors">
-                Donate
-              </Link>
-              <Link to="/contact" className="block text-muted-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
+              <SectionNav
+                className="block text-muted-foreground hover:text-primary transition-colors"
+                id="prayer-times"
+                text="Prayer Times"
+              />
+              <SectionNav
+                className="block text-muted-foreground hover:text-primary transition-colors"
+                id="about"
+                text="About Us"
+              />
+              <SectionNav
+                className="block text-muted-foreground hover:text-primary transition-colors"
+                id="donate"
+                text="Donate"
+              />
+              <SectionNav
+                className="block text-muted-foreground hover:text-primary transition-colors"
+                id="contact"
+                text="Contact Us"
+              />
             </div>
           </motion.div>
 
@@ -60,26 +70,46 @@ const Footer = () => {
             className="space-y-3"
           >
             <h3 className="text-lg font-semibold">Connect With Us</h3>
-            <div className="space-y-2">
+            <div className="flex flex-col space-y-3 mt-6">
               <a 
-                href="https://www.facebook.com/" 
+                href="https://www.facebook.com/AlhadiAssociation" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
               >
-                Facebook
+                <Facebook size={24} />
+                <span>Facebook</span>
               </a>
               <a 
-                href="https://www.whatsapp.com/" 
+                href="https://www.instagram.com/alhadimasjid"
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
               >
-                WhatsApp Group
+                <Instagram size={24} />
+                <span>Instagram</span>
+              </a>
+              <a 
+                href="https://chat.whatsapp.com/EA4ZKCd2Cm74MqsnIE6NVb"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <MessageCircle size={24} />
+                <span>Prayer WhatsApp Group</span>
+              </a>
+              <a 
+                href="https://chat.whatsapp.com/BeifACIbbH34dfRTQdsDt2" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <MessageCircle size={24} />
+                <span>Ladies' WhatsApp Group</span>
               </a>
             </div>
             <div className="pt-4 mt-4 border-t border-border text-sm text-muted-foreground">
-              <p>© {currentYear} Al Hadi Association. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} Al Hadi Association. All rights reserved.</p>
               <p className="mt-1">A 501(c)(3) non-profit organization.</p>
             </div>
           </motion.div>

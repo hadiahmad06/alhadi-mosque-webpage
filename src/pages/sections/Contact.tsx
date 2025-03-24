@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Facebook, Instagram, MessageCircle } from "lucide-react";
+
 
 const Contact = () => {
   return (
@@ -30,7 +32,9 @@ const Contact = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <h3 className="text-xl font-playfair font-semibold">Get In Touch</h3>
-                <p className="font-amiri">For any inquiries about prayer times, events, or general information, please don't hesitate to contact us.</p>
+                <p className="font-amiri">
+                  For any inquiries about prayer times, events, or general information, please don't hesitate to contact us.
+                </p>
                 <div className="space-y-3 mt-6 font-amiri">
                   <p className="flex items-center">
                     <span className="mr-2">📞</span>
@@ -46,22 +50,42 @@ const Contact = () => {
               <div className="space-y-4">
                 <h3 className="text-xl font-playfair font-semibold">Connect With Us</h3>
                 <p className="font-amiri">Follow us on social media to stay updated with our activities and announcements.</p>
-                <div className="flex space-x-4 mt-6">
+                <div className="flex flex-col space-y-3 mt-6">
                   <a 
-                    href="https://www.facebook.com/" 
+                    href="https://www.facebook.com/AlhadiAssociation" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="btn-outline"
+                    className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
                   >
-                    Facebook
+                    <Facebook size={24} />
+                    <span>Facebook</span>
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/alhadimasjid" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Instagram size={24} />
+                    <span>Instagram</span>
                   </a>
                   <a 
                     href="https://www.whatsapp.com/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="btn-outline"
+                    className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
                   >
-                    WhatsApp Group
+                    <MessageCircle size={24} />
+                    <span>Prayer WhatsApp Group</span>
+                  </a>
+                  <a 
+                    href="https://chat.whatsapp.com/BeifACIbbH34dfRTQdsDt2" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <MessageCircle size={24} />
+                    <span>Ladies' WhatsApp Group</span>
                   </a>
                 </div>
               </div>
