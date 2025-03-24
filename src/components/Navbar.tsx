@@ -11,6 +11,7 @@ interface NavbarProps {
 
 const Navbar = ({ isScrolled }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const isHome = location.pathname === "/";
   
   // Close mobile menu when window is resized to desktop
   useEffect(() => {
@@ -58,21 +59,42 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
             >
+              {/* Separate pages */}
               <NavLink to="/" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
                 Home
               </NavLink>
-              <NavLink to="/prayer-times" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
-                Prayer Times
+              <NavLink to="/events" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
+                Events
               </NavLink>
               <NavLink to="/about" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
-                About Us
+                Future Plans
               </NavLink>
-              <NavLink to="/donate" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
-                Donate
-              </NavLink>
-              <NavLink to="/contact" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
-                Contact
-              </NavLink>
+
+              {/* Home page sections */}
+              {isHome ? (
+                <a href="#donate" className="nav-link">
+                  Donate
+                </a>
+              ) : (
+                <NavLink to="/#donate" className="nav-link">
+                  Donate
+                </NavLink>
+              )}
+              {isHome ? (
+                <a href="#contact" className="nav-link">
+                  Contact
+                </a>
+              ) : (
+                <NavLink to="/#contact" className="nav-link">
+                  Contact
+                </NavLink>
+              )}
+
+              {/* <a href="#hero" className="nav-link">Home</a>
+              <a href="#prayer-times" className="nav-link">Prayer Times</a>
+              <a href="#about" className="nav-link">About Us</a>
+              <a href="#donate" className="nav-link">Donate</a>
+              <a href="#contact" className="nav-link">Contact</a> */}
             </motion.div>
           </nav>
 

@@ -4,13 +4,16 @@ import { cn } from '@/lib/utils';
 
 interface PrayerCardProps {
   name: string;
-  time: string;
+  adhanTime?: string;
+  iqamaTime: string;
   isNext?: boolean;
   timeRemaining?: string;
-  iqamaTime?: string;
 }
 
-const PrayerCard = ({ name, time, isNext, timeRemaining, iqamaTime }: PrayerCardProps) => {
+const PrayerCard = ({ name, adhanTime, isNext, timeRemaining, iqamaTime }: PrayerCardProps) => {
+  if (adhanTime === null) {
+     adhanTime = "Failed to load"
+  }
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -26,14 +29,12 @@ const PrayerCard = ({ name, time, isNext, timeRemaining, iqamaTime }: PrayerCard
       <div className="space-y-2">
         <div>
           <p className="text-xs text-muted-foreground">Adhan</p>
-          <p className="text-xl font-bold font-amiri">{time}</p>
+          <p className="text-xl font-bold font-amiri">{adhanTime}</p>
         </div>
-        {iqamaTime && (
-          <div>
-            <p className="text-xs text-muted-foreground">Iqama</p>
-            <p className="text-xl font-bold font-amiri text-secondary">{iqamaTime}</p>
-          </div>
-        )}
+        <div>
+          <p className="text-xs text-muted-foreground">Iqama</p>
+          <p className="text-xl font-bold text-primary font-amiri">{iqamaTime}</p>
+        </div>
       </div>
       {isNext && timeRemaining && (
         <div className="mt-3 pt-3 border-t border-primary/20">

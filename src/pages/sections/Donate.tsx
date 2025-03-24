@@ -1,36 +1,45 @@
 
 import { motion } from "framer-motion";
+
+import { Link } from "react-router-dom";
+import { usePrayerTimes } from "@/hooks/use-prayer-times";
+import PrayerCard from "@/components/PrayerCard";
+import GoogleMap from "@/components/GoogleMap";
+import JumuahTimes from "@/components/JumuahTimes";
+import { Separator } from "@/components/ui/separator";
 import SectionHeading from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 
 const donationMethods = [
   {
-    name: "Check",
+    name: "Check (Preferred)",
     description: "Make checks payable to 'Al Hadi Association' and mail to our address or drop off during prayer times.",
     icon: "📝",
   },
   {
-    name: "Direct Deposit",
+    name: "Direct Deposit (Preferred)",
     description: "Contact us for bank account details to set up a direct deposit or bank transfer.",
     icon: "🏦",
   },
   {
-    name: "Zelle",
+    name: "Zelle (Preferred)",
     description: "Send donations via Zelle to alhadilakeville@gmail.com or (651) 456-8088.",
     icon: "📱",
   },
   {
-    name: "Zeffy",
+    name: "Zeffy (Preferred)",
     description: "Donate online through our Zeffy page with credit/debit card or bank transfer.",
     icon: "💳",
+    link: "https://www.zeffy.com/donation-form/help-build-alhadi-masjid-lakeville"
   },
   {
-    name: "PayPal",
+    name: "PayPal - Fee Included",
     description: "Send funds through PayPal to alhadilakeville@gmail.com.",
     icon: "🌐",
+    link: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KL8M6XNJ3Q9TQ"
   },
   {
-    name: "Square",
+    name: "Square - Fee Included",
     description: "Donate in person using Square payment system available at the mosque.",
     icon: "🔲",
   },
@@ -39,20 +48,49 @@ const donationMethods = [
 const Donate = () => {
   return (
     <div className="pt-20">
-      {/* Donate Hero */}
-      <section className="relative py-20 bg-primary/5">
+      {/* Donation Methods */}
+      <section id="donate" className="bg-secondary/30 py-20">
         <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight mb-6">Support Your Mosque</h1>
-            <p className="text-xl text-muted-foreground">
-              Your generous contributions help us maintain our services and grow our community.
-            </p>
-          </motion.div>
+          <SectionHeading
+            title="Support Your Mosque"
+            subtitle="Al Hadi Association is a registered 501(c)(3) non-profit organization. All donations are tax-deductible and support our community services."
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {donationMethods.map((method, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {method.link ? (
+                  <a href={method.link} target="_blank" rel="noopener noreferrer">
+                    <Card className="h-full cursor-pointer">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="text-2xl">{method.icon}</div>
+                          <h3 className="text-xl font-semibold">{method.name}</h3>
+                        </div>
+                        <p className="text-muted-foreground">{method.description}</p>
+                      </CardContent>
+                    </Card>
+                  </a>
+                ) : (
+                  <Card className="h-full">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="text-2xl">{method.icon}</div>
+                        <h3 className="text-xl font-semibold">{method.name}</h3>
+                      </div>
+                      <p className="text-muted-foreground">{method.description}</p>
+                    </CardContent>
+                  </Card>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -75,10 +113,7 @@ const Donate = () => {
               <ul className="list-disc pl-6 space-y-2">
                 <li>Mosque rent and utilities</li>
                 <li>Insurance and maintenance</li>
-                <li>Educational programs and materials</li>
-                <li>Community events and activities</li>
                 <li>Future building projects and expansion</li>
-                <li>Charity and community service initiatives</li>
               </ul>
               <p>
                 By supporting Al Hadi Association, you're investing in a stronger Muslim community in Lakeville 
@@ -135,41 +170,8 @@ const Donate = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Donation Methods */}
-      <section className="bg-secondary/30 py-20">
-        <div className="section-container">
-          <SectionHeading
-            title="Ways to Donate"
-            subtitle="Choose the method that works best for you"
-          />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {donationMethods.map((method, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="text-2xl">{method.icon}</div>
-                      <h3 className="text-xl font-semibold">{method.name}</h3>
-                    </div>
-                    <p className="text-muted-foreground">{method.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Monthly Giving */}
-      <section className="section-container">
+      {/* <section className="section-container">
         <div className="glass-card rounded-xl p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <motion.div
@@ -216,7 +218,7 @@ const Donate = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Tax Information */}
       <section className="bg-primary/5 py-16">
