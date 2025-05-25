@@ -1,10 +1,11 @@
 
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Contact, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import SectionNav from "@/components/NavButtons";
+import ContactsBar from "./ContactsBar";
 
 interface NavbarProps {
   isScrolled: boolean;
@@ -12,29 +13,32 @@ interface NavbarProps {
 
 const Navbar = ({ isScrolled }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  // const [isNavbarSticky, setIsNavbarSticky] = useState(false);
+  // const location = useLocation();
   const isHome = location.pathname === "/";
-  
-  // Close mobile menu when window is resized to desktop
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(false);
-      }
-    };
-    
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const contactsBarHeight = document.querySelector(".contacts-bar")?.clientHeight || 0;
+  //     setIsNavbarSticky(window.scrollY > 20);
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white dark:bg-black shadow-sm",
+        // "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        // isScrolled
+        //   ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm"
+        //   : "bg-transparent"
+
       )}
     >
+      <ContactsBar/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           <Link 

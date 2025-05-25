@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import ContactsBar from "./ContactsBar";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ const Layout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* <ContactsBar /> */}
       <Navbar isScrolled={isScrolled} />
       <motion.main 
         className="flex-grow"
