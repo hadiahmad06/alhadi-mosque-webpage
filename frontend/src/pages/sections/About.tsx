@@ -1,5 +1,6 @@
 
 import { motion } from "framer-motion";
+import parallaxImage from "/images/frontfacing.webp"
 import SectionHeading from "@/components/SectionHeading";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import GoogleMap from "@/components/GoogleMap";
@@ -67,7 +68,7 @@ const About = () => {
               className="rounded-xl overflow-hidden shadow-lg border-4 border-secondary/30"
             >
               <img 
-                src="https://images.unsplash.com/photo-1564769513425-2cb3e2cefe07?q=80&w=1974&auto=format&fit=crop" 
+                src={parallaxImage}
                 alt="Mosque Interior" 
                 className="w-full h-full object-cover"
               />
