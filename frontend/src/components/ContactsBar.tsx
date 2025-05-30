@@ -2,7 +2,7 @@ import { Facebook, Instagram, MessageCircle } from "lucide-react";
 
 const ContactsBar = () => {
   return (
-    <div className="bg-secondary text-secondary-foreground py-2">
+    <div id="contacts-bar" className="bg-secondary text-secondary-foreground py-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Contact Info */}
         <div className="flex space-x-4 text-sm">

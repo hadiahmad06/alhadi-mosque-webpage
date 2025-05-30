@@ -29,6 +29,7 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
 
   return (
     <header
+      id="navbar"
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white dark:bg-black shadow-sm",
         // "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
@@ -68,9 +69,9 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
               <NavLink to="/" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
                 Home
               </NavLink>
-              <NavLink to="/special" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
+              {/* <NavLink to="/special" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
                 Ramadan 2025
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/events" className={({ isActive }) => cn("nav-link", isActive && "active-nav-link")}>
                 Events
               </NavLink>

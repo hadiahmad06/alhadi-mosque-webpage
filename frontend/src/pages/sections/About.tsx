@@ -80,7 +80,7 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {[
                 { name: "Masood Ahmad", role: "President" },
-                { name: "Muhammad Shabaz", role: "Secretary" },
+                { name: "Muhammad Shahbaz", role: "Secretary" },
                 { name: "Shahid Nadeem", role: "Treasurer" },
                 { name: "Muhammad Shouab", role: "Religious Affairs" },
                 { name: "Muhammad Sohaib Ahmad", role: "Communication Director" }

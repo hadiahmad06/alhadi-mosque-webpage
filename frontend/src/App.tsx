@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react"
 import Layout from "./components/Layout";
 import ScrollToHash from "./components/ScrollToHash";
+import About from "./pages/About";
 import Index from "./pages/Index";
 import Events from "./pages/Events";
 import SpecialPage from "./pages/SpecialPage";
@@ -29,6 +30,7 @@ const App = () => (
               <Route index element={<Index />} />
               <Route path="/events/" element={<Events />}/>
               <Route path="/special/" element={<SpecialPage />} />
+              <Route path="/about/" element={<About />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
